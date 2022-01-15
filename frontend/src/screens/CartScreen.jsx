@@ -9,13 +9,18 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
-  const location = useLocation(); //prettier-ignore
+  const {state}= useLocation(); //prettier-ignore
 
-  console.log(location.state);
+  console.log(state);
 
-  // useEffect(() => {
-  //   dispatch(addToCart(location.state.id, Number(state.qty)));
-  // }, [dispatch, location.state.id, location.state.qty]);
+  useEffect(() => {
+    const addToCartFunction = () => {
+      dispatch(addToCart(state.id, Number(state.qty)));
+    };
+    if (state !== null) {
+      addToCartFunction();
+    }
+  }, [dispatch, state]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
