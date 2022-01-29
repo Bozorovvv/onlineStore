@@ -11,8 +11,6 @@ const CartScreen = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const {state}= useLocation(); //prettier-ignore
 
-  console.log(state);
-
   useEffect(() => {
     const addToCartFunction = () => {
       dispatch(addToCart(state.id, Number(state.qty)));
